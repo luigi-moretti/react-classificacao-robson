@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container, Grid, Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Favicon from '../../assets/img/favicon.png';
 
 
 function Home() {
     return (
         <Container>
-            <Typography variant="h3" component="h1" style={{marginTop:"25px"}}>Bem-vindo!</Typography>
+            <Typography variant="h3" component="h1" style={{ marginTop: "25px" }}>Bem-vindo!</Typography>
             <Grid
                 style={{ height: "70vh" }}
                 container
@@ -17,10 +18,18 @@ function Home() {
                 <Typography align="justify" paragraph>
                     Criada pelo médico irlandês Michael Robson em 2001, a <strong>Classificação de Robson</strong> tem como objetivo classificar de forma padronizada e aceita globalmente às cesáreas que são realizadas em uma ou mais instituições.
                 </Typography>
-                <Link to='/formulario'>
+                <Container>
+                    <img style={{
+                        display: "block",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginBottom: '15px'
+                    }} alt="grupo01" src={Favicon} />
+                </Container>
+                <Link to='/formulario' style={{ textDecoration: 'none', color: 'white' }}>
                     <Button variant="contained" color="primary" size="large">
                         Iniciar classificação
-                </Button>
+                    </Button>
                 </Link>
             </Grid>
         </Container>

@@ -8,7 +8,7 @@ import Formulario from './pages/Formulario'
 
 function Routes(){
     return(
-        <Container>
+        <Container maxWidth="md">
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/formulario' component={Formulario} />

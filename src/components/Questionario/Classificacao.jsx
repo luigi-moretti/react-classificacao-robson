@@ -1,5 +1,4 @@
 import { Button, Container, Grid, Box, Typography } from '@material-ui/core';
-import SaveIcon from '@material-ui/icons/Save';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 //import { useEffect, useState } from 'react';
@@ -116,31 +115,14 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
                 direction="row"
                 justify="center"
                 spacing={1}>
-
                 <Grid item >
                     <Box display="flex" justifyContent="flex-end">
-                        <Button variant="contained" color="primary"  onClick={event => { event.preventDefault(); aoEnviar({grupo})}}  startIcon={<SaveIcon />}>Salvar</Button>
-                    </Box>
-                </Grid>
-                <Grid item >
-                    <Box display="flex" justifyContent="flex-end">
-                        <Link to='/'><Button variant="contained" color="primary" startIcon={<HomeIcon />} >Início</Button></Link>
+                        <Link to='/' style={{textDecoration:'none', color:'white'}}><Button variant="contained" color="primary" startIcon={<HomeIcon />} >Início</Button></Link>
                     </Box>
                 </Grid>
             </Grid>
         </Container>
     );
 
-    /*  
-    <Button variant="contained" color="primary" startIcon={<PrintIcon />} >Imprimir</Button>
-                <Grid item >
-                    <Box display="flex" justifyContent="flex-end">
-                    <Button variant="contained" color="primary"  startIcon={<SaveIcon />} size="small">Salvar</Button>
-                    </Box>
-                </Grid>
-                <Grid item>
-                    <Button variant="contained" color="primary" onClick={event => {event.preventDefault(); aoVoltar();}} startIcon={<ArrowBackIosIcon />} size="small">Voltar</Button>
-                </Grid>
-    */
 }
 export default Classificacao;

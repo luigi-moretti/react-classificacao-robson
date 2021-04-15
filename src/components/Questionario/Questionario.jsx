@@ -16,56 +16,59 @@ function Questionario() {
     const [dadosColetados, setDados] = useState({});
     const [grupo, setGrupo] = useState(0);
 
+    const atualizaGrupo = (grupo) => setGrupo(grupo);
+
+
     useEffect(()=>{
         if(formAtual === formularios.length-3){
             if(dadosColetados.fetos === 'B'){
                 
-                setGrupo(8);
+                atualizaGrupo(8);
                 //setDados({ ...dadosColetados, ...{grupo:8} });
             }else{
                 if(dadosColetados.apresentacaoFetal === 'C'){
     
-                    setGrupo(9);
+                    atualizaGrupo(9);
                     //setDados({ ...dadosColetados, ...{grupo:9} });
                 } else if(dadosColetados.apresentacaoFetal === 'B'){
                     if(dadosColetados.paridade === 'A'){
         
-                        setGrupo(6);
+                        atualizaGrupo(6);
                         //setDados({ ...dadosColetados, ...{grupo:6} });
                     } else{
         
-                        setGrupo(7);
+                        atualizaGrupo(7);
                         //setDados({ ...dadosColetados, ...{grupo:7} });
                     }
                 } else if(dadosColetados.apresentacaoFetal === 'A'){
                     if(dadosColetados.idadeGestacional === 'B'){
         
-                        setGrupo(10);
+                        atualizaGrupo(10);
                         //setDados({ ...dadosColetados, ...{grupo:10} });
                     }else{
                         if(dadosColetados.paridade === 'C'){
             
-                            setGrupo(5);
+                            atualizaGrupo(5);
                             //setDados({ ...dadosColetados, ...{grupo:5} });
                         } else {
                                 if(dadosColetados.paridade === 'A'){
                                     if(dadosColetados.trabalhoParto === 'A'){
                         
-                                        setGrupo(1);
+                                        atualizaGrupo(1);
                                         //setDados({ ...dadosColetados, ...{grupo:1} });
                                     } else{
                         
-                                        setGrupo(2);
+                                        atualizaGrupo(2);
                                         //setDados({ ...dadosColetados, ...{grupo:2} });
                                     }
                                 }else {
                                     if(dadosColetados.trabalhoParto === 'A'){
                         
-                                        setGrupo(3);
+                                        atualizaGrupo(3);
                                         //setDados({ ...dadosColetados, ...{grupo:3} });
                                     } else{
                         
-                                        setGrupo(4);
+                                        atualizaGrupo(4);
                                         //setDados({ ...dadosColetados, ...{grupo:4} });
                                     }
                                 }
