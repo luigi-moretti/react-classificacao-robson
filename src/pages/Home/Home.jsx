@@ -7,9 +7,9 @@ import Favicon from '../../assets/img/favicon.png';
 function Home() {
     return (
         <Container>
-            <Typography variant="h3" component="h1" style={{ marginTop: "25px" }}>Bem-vindo!</Typography>
+            <Typography variant="h3" component="h1" style={{ marginTop: "25px" }}>Bem-vindo(a)!</Typography>
             <Grid
-                style={{ height: "70vh" }}
+                //style={{ height: "100vh" }}
                 container
                 direction="column"
                 justify="center"
@@ -23,7 +23,8 @@ function Home() {
                         display: "block",
                         marginLeft: "auto",
                         marginRight: "auto",
-                        marginBottom: '15px'
+                        marginBottom: '15px',
+                        maxWidth:'250px'
                     }} alt="grupo01" src={Favicon} />
                 </Container>
                 <Link to='/formulario' style={{ textDecoration: 'none', color: 'white' }}>
