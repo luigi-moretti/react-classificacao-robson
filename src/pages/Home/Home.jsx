@@ -25,7 +25,7 @@ function Home() {
                         marginRight: "auto",
                         marginBottom: '15px',
                         maxWidth:'250px'
-                    }} alt="grupo01" src={Favicon} />
+                    }} alt="logotipo" src={Favicon} />
                 </Container>
                 <Link to='/formulario' style={{ textDecoration: 'none', color: 'white' }}>
                     <Button variant="contained" color="primary" size="large">
