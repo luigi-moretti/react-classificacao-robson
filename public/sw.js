@@ -20,7 +20,7 @@ var appShellFiles = [
     '/static/js/runtime-main.1f6e2e21.js',
     '/static/js/runtime-main.1f6e2e21.js.map',
     '/static/media/favicon.cfc72c03.png',
-    '/static/media/grupo01.f0fc2d2b.png.png',
+    '/static/media/grupo01.f0fc2d2b.png',
     '/static/media/grupo02.0e705ceb.png',
     '/static/media/grupo03.49f1282b.png',
     '/static/media/grupo04.2536a486.png',
