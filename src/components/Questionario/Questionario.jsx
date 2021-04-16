@@ -1,4 +1,4 @@
-import { Grid} from '@material-ui/core';
+import { Box} from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 
 import ApresentacaoFetal from './ApresentacaoFetal';
@@ -78,10 +78,6 @@ function Questionario() {
 
             } 
         }
-
-        if(formAtual === formularios.length-1){
-            console.log(dadosColetados);
-        }
     })
 
     const formularios = [
@@ -109,12 +105,9 @@ function Questionario() {
 
     }
     return (
-        <Grid container
-        direction="column"
-        justify="flex-start"
-        alignItems="stretch">
+        <Box>
             {formularios[formAtual]}
-        </Grid>
+        </Box>
 
     )
 }

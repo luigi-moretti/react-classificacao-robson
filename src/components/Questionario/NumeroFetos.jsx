@@ -8,7 +8,6 @@ function NumeroFetos({ aoEnviar, aoVoltar }) {
 
     return (
         <form
-            style={{ height: "79vh" }}
             onSubmit={event => {
                 event.preventDefault();
                 aoEnviar({ fetos });
@@ -18,8 +17,6 @@ function NumeroFetos({ aoEnviar, aoVoltar }) {
                 container
                 direction="column"
                 justify="space-between"
-                
-                style={{ height: "100%" }}
             >
                 <Grid container item direction="column">
                     <Typography variant="h4" component="h2">Número de Fetos</Typography>

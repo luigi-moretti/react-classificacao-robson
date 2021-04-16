@@ -1,4 +1,4 @@
-import {TextField, Button, Grid, Typography } from '@material-ui/core';
+import { TextField, Button, Grid, Typography } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import React, { useState } from 'react';
@@ -11,11 +11,8 @@ function Salvar({ aoEnviar, dadosColetados }) {
     const [numeroEnd, setNumeroEnd] = useState('');
     const [telefone, setTelefone] = useState('');
 
-    console.log(dadosColetados);
-
     return (
         <form
-            style={{ height: "79vh" }}
             onSubmit={event => {
                 event.preventDefault();
                 aoEnviar({ nome, sobrenome, idade, endereco, numeroEnd, telefone });
@@ -26,7 +23,6 @@ function Salvar({ aoEnviar, dadosColetados }) {
                 direction="column"
                 justify="space-between"
                 alignItems="flex-start"
-                style={{ height: "100%" }}
             >
 
                 <Grid item
@@ -36,40 +32,40 @@ function Salvar({ aoEnviar, dadosColetados }) {
                     alignItems="flex-start"
                     spacing={2}
                 >
-                <Grid item xs={12}>
-                    <Typography variant="h4" component="h2">Salvar Dados</Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField onChange={(event) => {
-                        setNome(event.target.value);
-                    }} required label="Nome" variant="outlined" fullWidth/>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField  onChange={(event) => {
-                        setSobrenome(event.target.value);
-                    }}
-                     required label="Sobrenome" variant="outlined" fullWidth/>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <TextField onChange={(event) => {
-                        setIdade(event.target.value);
-                    }} required label="Idade" type="number" variant="outlined" fullWidth/>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                    <TextField onChange={(event) => {
-                        setTelefone(event.target.value);
-                    }} label="Telefone" type="number" variant="outlined" fullWidth/>
-                </Grid>
-                <Grid item xs={12} sm={10}>
-                    <TextField onChange={(event) => {
-                        setEndereco(event.target.value);
-                    }} label="Endereço" variant="outlined" fullWidth/>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <TextField onChange={(event) => {
-                        setNumeroEnd(event.target.value);
-                    }} label="Número" type="number" variant="outlined" fullWidth/>
-                </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h4" component="h2">Salvar Dados</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField onChange={(event) => {
+                            setNome(event.target.value);
+                        }} required label="Nome" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField onChange={(event) => {
+                            setSobrenome(event.target.value);
+                        }}
+                            required label="Sobrenome" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <TextField onChange={(event) => {
+                            setIdade(event.target.value);
+                        }} required label="Idade" type="number" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <TextField onChange={(event) => {
+                            setTelefone(event.target.value);
+                        }} label="Telefone" type="number" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={10}>
+                        <TextField onChange={(event) => {
+                            setEndereco(event.target.value);
+                        }} label="Endereço" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <TextField onChange={(event) => {
+                            setNumeroEnd(event.target.value);
+                        }} label="Número" type="number" variant="outlined" fullWidth />
+                    </Grid>
                 </Grid>
 
                 <Grid

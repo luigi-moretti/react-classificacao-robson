@@ -8,7 +8,6 @@ function Paridade({ aoEnviar }) {
 
     return (
         <form
-            style={{ height: "79vh" }}
             onSubmit={event => {
                 event.preventDefault();
                 aoEnviar({ paridade });
@@ -18,8 +17,6 @@ function Paridade({ aoEnviar }) {
                 container
                 direction="column"
                 justify="space-between"
-                
-                style={{ height: "100%" }}
             >
 
 

@@ -99,7 +99,6 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
     }
     }
 
-    console.log(dadosColetados)
 
     return (
         <Container>

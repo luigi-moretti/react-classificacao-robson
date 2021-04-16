@@ -8,7 +8,6 @@ function TrabalhoParto({ aoEnviar, aoVoltar }) {
 
     return (
         <form
-            style={{ height: "79vh" }}
             onSubmit={event => {
                 event.preventDefault();
                 aoEnviar({ trabalhoParto });
@@ -17,9 +16,6 @@ function TrabalhoParto({ aoEnviar, aoVoltar }) {
             <Grid
                 container
                 direction="column"
-                justify="space-between"
-                
-                style={{ height: "100%" }}
             >
                 <Grid container item direction="column">
                     <Typography variant="h4" component="h2">Trabalho de Parto</Typography>
@@ -46,6 +42,7 @@ function TrabalhoParto({ aoEnviar, aoVoltar }) {
                     container
                     direction="row"
                     justify="space-between"
+                    
                     >
                     <Grid item>
                         <Button variant="contained" color="primary" onClick={event => { event.preventDefault(); aoVoltar(); }} startIcon={<ArrowBackIosIcon />}>Voltar</Button>

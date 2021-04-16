@@ -8,7 +8,6 @@ function ApresentacaoFetal({ aoEnviar, aoVoltar }) {
 
     return (
         <form
-            style={{ height: "79vh" }}
             onSubmit={event => {
                 event.preventDefault();
                 aoEnviar({ apresentacaoFetal });
@@ -18,8 +17,6 @@ function ApresentacaoFetal({ aoEnviar, aoVoltar }) {
                 container
                 direction="column"
                 justify="space-between"
-                
-                style={{ height: "100%" }}
             >
                 <Grid container item direction="column">
                     <Typography variant="h4" component="h2">Apresentação Fetal</Typography>
