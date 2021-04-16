@@ -32,11 +32,11 @@ var appShellFiles = [
     '/static/media/grupo10.0145de45.png'
 ];
 
-const imagens = [];
+//const imagens = [];
 /*for (let i = 0; i < games.length; i++) {
   gamesImages.push(`static/media/${games[i].slug}.jpg`);
 }*/
-const contentToCache = appShellFiles.concat(imagens);
+//const contentToCache = appShellFiles.concat(imagens);
 
 
 
@@ -45,7 +45,7 @@ self.addEventListener('install', function (event) {
     event.waitUntil((async () => {
         const cache = await caches.open(cacheName);
         console.log('[Service Worker] Caching all: app shell and content');
-        await cache.addAll(contentToCache);
+        await cache.addAll(appShellFiles);
       })());
 });
 
