@@ -10,11 +10,11 @@ var appShellFiles = [
     '/manifest.json',
     '/robots.txt',
     '/sw.js',
-    '/static/css/main.2ae47eeb.chunk.css',
-    '/static/css/main.2ae47eeb.chunk.css.map',
-    '/static/js/2.fc0fb2ed.chunk.js',
-    '/static/js/2.fc0fb2ed.chunk.js.LICENSE.txt',
-    '/static/js/2.fc0fb2ed.chunk.js.map',
+    '/static/css/main.6dea0f05.chunk.css',
+    '/static/css/main.6dea0f05.chunk.css.map',
+    '/static/js/main.8a758e50.chunk.js',
+    '/static/js/main.8a758e50.chunk.js.LICENSE.txt',
+    '/static/js/main.8a758e50.chunk.js.map',
     '/static/js/main.a3fc49d2.chunk.js',
     '/static/js/main.a3fc49d2.chunk.js.map',
     '/static/js/runtime-main.1f6e2e21.js',
@@ -55,7 +55,7 @@ self.addEventListener('activate', (event) => {
         if (key === cacheName) { return; }
         caches.delete(key);
       }))
-    })());
+    }));
   });
 
 self.addEventListener('fetch', (event) => {
