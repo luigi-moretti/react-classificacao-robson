@@ -21,6 +21,7 @@ function Questionario() {
 
     useEffect(()=>{
         if(formAtual === formularios.length-3){
+            console.log(dadosColetados);
             if(dadosColetados.fetos === 'B'){
                 
                 atualizaGrupo(8);
