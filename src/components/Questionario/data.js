@@ -8,6 +8,7 @@ export const data = {
   nomePaciente:"Maria Joaquina Alves da Cunha",
   cpfPaciente: 123456789,
   nomeProfissional: "Andreia Correia Pereira",
+  cpfProfissional: 123456789,
   conselhoProfissional: "COREN",
   nConselhoProfissional: 987654321
 }

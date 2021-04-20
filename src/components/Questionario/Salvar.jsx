@@ -28,7 +28,7 @@ function Salvar({ aoEnviar, dadosColetados }) {
                 <Grid item
                     container
                     direction="row"
-                    justify="start"
+                    justify="space-between"
                     alignItems="flex-start"
                     spacing={2}
                 >

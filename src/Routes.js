@@ -6,7 +6,6 @@ import { Container, Box } from '@material-ui/core';
 import Home from './pages/Home';
 import Formulario from './pages/Formulario'
 import Contato from './pages/Contato';
-import GerarPdf from './pages/GerarPdf';
 
 function Routes(){
     return(
@@ -16,7 +15,6 @@ function Routes(){
                     <Route exact path='/' component={Home} />
                     <Route path='/formulario' component={Formulario} />
                     <Route path='/contato' component={Contato} />
-                    <Route path='/pdf' component={GerarPdf} />
                 </Switch>
             </Container>
         </Box>
