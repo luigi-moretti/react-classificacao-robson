@@ -36,9 +36,7 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, validacoes}) {
             tipoConselho: tipoConselho,
             numeroConselho:numeroConselho
          }
-        const dados = { ...dadosColetados, ...formDados }
-        //console.log('report', data);
-        console.log('dadosColetados', dados);
+        const dados = { ...dadosColetados, ...formDados }      
         const classeImpressao = new Impressao(dados);
         const documento = await classeImpressao.PreparaDocumento();
         pdfMake.createPdf(documento).open({}, window.open('', '_blank'));
@@ -49,7 +47,6 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, validacoes}) {
         const novoEstado = {...erros};
         novoEstado[name] = validacoes[name](value);
         setErros(novoEstado);
-        console.log(novoEstado);
     }
 
     function possoEnviar(){

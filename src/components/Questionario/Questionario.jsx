@@ -30,8 +30,6 @@ function Questionario() {
     const atualizaGrupo = (grupo) => setGrupo(grupo);
 
     const visualizarImpressao = async () => {
-        console.log('report', data);
-        console.log('dadosColetados', dadosColetados);
         const classeImpressao = new Impressao(data);
         const documento = await classeImpressao.PreparaDocumento();
         pdfMake.createPdf(documento).open({}, window.open('', '_blank'));
@@ -39,7 +37,6 @@ function Questionario() {
 
     useEffect(()=>{
         if(formAtual === formularios.length-2){
-            //console.log(dadosColetados);
             if(dadosColetados.fetos === 'B'){
                 
                 atualizaGrupo(8);
