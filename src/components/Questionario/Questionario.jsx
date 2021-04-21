@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 
+import {validarSenha, testaCPF} from '../../models/formulario';
 import ApresentacaoFetal from './ApresentacaoFetal';
 import IdadeGestacional from './IdadeGestacional';
 import NumeroFetos from './NumeroFetos';
@@ -18,6 +19,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { data } from './data';
 import { Impressao } from './impressao';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 
 function Questionario() {
@@ -104,7 +106,7 @@ function Questionario() {
         <IdadeGestacional aoEnviar={coletarDados} aoVoltar={anterior} />,
         <TrabalhoParto aoEnviar={coletarDados} aoVoltar={anterior} />,
         <Classificacao aoEnviar={coletarDados} aoVoltar={anterior} dadosColetados={dadosColetados} grupo={grupo}/>,
-        <GerarPdf aoEnviar={coletarDados} dadosColetados={dadosColetados} aoVoltar={anterior} visualizarImpressao={visualizarImpressao} />,
+        <GerarPdf aoEnviar={coletarDados} dadosColetados={dadosColetados} aoVoltar={anterior} visualizarImpressao={visualizarImpressao} validacoes={{nomePaciente:validarSenha, cpfPaciente: testaCPF, nomeProfissional: validarSenha, cpfProfissional:testaCPF}} />,
     ]
         
 

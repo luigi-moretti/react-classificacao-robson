@@ -10,7 +10,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
 
-function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
+function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, validacoes}) {
     const [nomePaciente, setNomePaciente] = useState('');
     const [idade, setIdade] = useState('');
     const [cpfPaciente, setCpfPaciente] = useState('');
@@ -18,6 +18,13 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
     const [cpfProfissional, setCpfProfissional] = useState('');
     const [tipoConselho, setTipoConselho] = useState('');
     const [numeroConselho, setNumeroConselho] = useState('');
+    const [erros, setErros] = useState(
+        {
+            nomePaciente:{valido:true, texto:""},
+            cpfPaciente:{valido:true, texto:""},
+            nomeProfissional:{valido:true, texto:""},
+            cpfProfissional:{valido:true, texto:""},
+        });
 
     const visualizarImpressao = async () => {
         const formDados = { 
@@ -37,12 +44,31 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
         pdfMake.createPdf(documento).open({}, window.open('', '_blank'));
     }
 
+    function validarCampos(event){
+        const {name,value} = event.target;
+        const novoEstado = {...erros};
+        novoEstado[name] = validacoes[name](value);
+        setErros(novoEstado);
+        console.log(novoEstado);
+    }
+
+    function possoEnviar(){
+        for(let campo in erros){
+            if(!erros[campo].valido){
+                return false
+            }
+        }
+        return true;
+    }
+
     return (
         <Box>
             <form
                 onSubmit={event => {
                     event.preventDefault();
-                    visualizarImpressao();
+                    if(possoEnviar()){
+                        visualizarImpressao();
+                    }
                 }}
             >
                 <Grid
@@ -65,20 +91,40 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
                             <Typography variant="h6" component="h2">Dados da paciente</Typography>
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <TextField onChange={(event) => {
+                            <TextField 
+                            onChange={(event) => {
                                 setNomePaciente(event.target.value);
-                            }} value={nomePaciente} required label="Nome da paciente" variant="outlined" fullWidth />
+                            }} 
+                            value={nomePaciente} 
+                            name="nomePaciente"
+                            label="Nome da paciente"
+                            onBlur={validarCampos}
+                            error={!erros.nomePaciente.valido}
+                            helperText={erros.nomePaciente.texto}
+                            required variant="outlined" fullWidth />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField onChange={(event) => {
                                 setCpfPaciente(event.target.value);
-                            }} value={cpfPaciente}
-                                required label="CPF" variant="outlined" fullWidth />
+                            }} 
+                            value={cpfPaciente}
+                            label="CPF" 
+                            name="cpfPaciente"
+                            type="number" 
+                            onBlur={validarCampos}
+                            error={!erros.cpfPaciente.valido}
+                            helperText={erros.cpfPaciente.texto}
+                            required variant="outlined" fullWidth />
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <TextField onChange={(event) => {
                                 setIdade(event.target.value);
-                            }}  value={idade} label="Idade" type="number" variant="outlined" fullWidth />
+                            }}  
+                            value={idade} 
+                            name="idade"
+                            label="Idade" 
+                            type="number" 
+                            variant="outlined" fullWidth />
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h6" component="h2">Dados do profissional</Typography>
@@ -86,12 +132,27 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
                         <Grid item xs={12} sm={12}>
                             <TextField onChange={(event) => {
                                 setNomeProfissional(event.target.value);
-                            }} value={nomeProfissional} label="Nome do profissional" type="text" variant="outlined" required fullWidth />
+                            }} 
+                            value={nomeProfissional} 
+                            label="Nome do profissional" 
+                            name="nomeProfissional"
+                            onBlur={validarCampos}
+                            error={!erros.nomeProfissional.valido}
+                            helperText={erros.nomeProfissional.texto}
+                            variant="outlined" required fullWidth />
                         </Grid>
                         <Grid item xs={12} sm={12}>
                             <TextField onChange={(event) => {
                                 setCpfProfissional(event.target.value);
-                            }} value={cpfProfissional} label="CPF" type="number" variant="outlined" required fullWidth />
+                            }} 
+                            value={cpfProfissional} 
+                            label="CPF" 
+                            name="cpfProfissional"
+                            type="number" 
+                            onBlur={validarCampos}
+                            error={!erros.cpfProfissional.valido}
+                            helperText={erros.cpfProfissional.texto}
+                            variant="outlined" required fullWidth />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Tipo do Conselho</InputLabel>
@@ -110,7 +171,12 @@ function GerarPdf({ aoEnviar, aoVoltar, dadosColetados, }) {
                         <Grid item xs={12} sm={6}>
                             <TextField onChange={(event) => {
                                 setNumeroConselho(event.target.value);
-                            }} value={numeroConselho} label="Número do Conselho" type="number" variant="outlined" required fullWidth />
+                            }} 
+                            value={numeroConselho} 
+                            label="Número do Conselho" 
+                            name="numeroConselho"
+                            type="number" 
+                            variant="outlined" required fullWidth />
                         </Grid>
                     </Grid>
 
