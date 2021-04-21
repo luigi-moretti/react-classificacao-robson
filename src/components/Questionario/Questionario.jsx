@@ -1,14 +1,25 @@
 import { Box} from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 
+
+
+import {validarSenha, testaCPF} from '../../models/formulario';
 import ApresentacaoFetal from './ApresentacaoFetal';
 import IdadeGestacional from './IdadeGestacional';
 import NumeroFetos from './NumeroFetos';
 import Paridade from './Paridade';
 import TrabalhoParto from './TrabalhoParto';
 import Classificacao from './Classificacao';
-import Salvar from './Salvar';
-import Finalizacao from './Finalizacao';
+//import Salvar from './Salvar';
+//import Finalizacao from './Finalizacao';
+import GerarPdf from './GerarPdf';
+
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { data } from './data';
+import { Impressao } from './impressao';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 
 function Questionario() {
@@ -18,9 +29,14 @@ function Questionario() {
 
     const atualizaGrupo = (grupo) => setGrupo(grupo);
 
+    const visualizarImpressao = async () => {
+        const classeImpressao = new Impressao(data);
+        const documento = await classeImpressao.PreparaDocumento();
+        pdfMake.createPdf(documento).open({}, window.open('', '_blank'));
+    }
 
     useEffect(()=>{
-        if(formAtual === formularios.length-3){
+        if(formAtual === formularios.length-2){
             if(dadosColetados.fetos === 'B'){
                 
                 atualizaGrupo(8);
@@ -87,8 +103,8 @@ function Questionario() {
         <IdadeGestacional aoEnviar={coletarDados} aoVoltar={anterior} />,
         <TrabalhoParto aoEnviar={coletarDados} aoVoltar={anterior} />,
         <Classificacao aoEnviar={coletarDados} aoVoltar={anterior} dadosColetados={dadosColetados} grupo={grupo}/>,
-        <Salvar aoEnviar={coletarDados} aoVoltar={anterior} />,
-        <Finalizacao aoEnviar={coletarDados} aoVoltar={anterior} />]
+        <GerarPdf aoEnviar={coletarDados} dadosColetados={dadosColetados} aoVoltar={anterior} visualizarImpressao={visualizarImpressao} validacoes={{nomePaciente:validarSenha, cpfPaciente: testaCPF, nomeProfissional: validarSenha, cpfProfissional:testaCPF}} />,
+    ]
         
 
     function proximo() {

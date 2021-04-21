@@ -1,5 +1,6 @@
 import { Button, Container, Grid, Box, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
+import SaveIcon from '@material-ui/icons/Save';
 import { Link } from 'react-router-dom';
 //import { useEffect, useState } from 'react';
 import imgGrupo01 from '../../assets/img/grupo01.png';
@@ -22,7 +23,7 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="Classificando..." src='' />,
-            label:<Typography paragraph>Classificando...</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Classificando...</Typography>
         },
         1:{  
             imagem:<img style={{
@@ -30,35 +31,35 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo01" src={imgGrupo01} />,
-            label:<Typography paragraph>Nulíparas com feto único cefálico, maior ou igual que 37 semanas, em trabalho de parto espontâneo.</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Nulíparas com feto único cefálico, maior ou igual que 37 semanas, em trabalho de parto espontâneo.</Typography>
         },
         2:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo02" src={imgGrupo02} />,
-            label:<Typography paragraph>Nulíparas com feto único, cefálico, maior ou igual que 37 semanas, cujo parto é induzido ou que são submetidas à cesárea antes do início do trabalho de parto.</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Nulíparas com feto único, cefálico, maior ou igual que 37 semanas, cujo parto é induzido ou que são submetidas à cesárea antes do início do trabalho de parto.</Typography>
         },
         3:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo03" src={imgGrupo03} />,
-            label:<Typography paragraph>Multíparas sem cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas, em trabalho de parto espontâneo.</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Multíparas sem cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas, em trabalho de parto espontâneo.</Typography>
         },
         4:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo04" src={imgGrupo04} />,
-            label:<Typography paragraph>Multíparas sem cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas, cujo parto é induzido ou que são submetidas à cesárea antes do início do trabalho de parto.</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Multíparas sem cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas, cujo parto é induzido ou que são submetidas à cesárea antes do início do trabalho de parto.</Typography>
         },
         5:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo05" src={imgGrupo05} />,
-            label:<Typography paragraph>Todas as multíparas com pelo menos uma cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas.</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Todas as multíparas com pelo menos uma cesárea anterior, com feto único, cefálico, maior ou igual que 37 semanas.</Typography>
         },
         6:{imagem:<img
             style={{
@@ -67,35 +68,35 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
             marginRight: "auto"
             }}
             alt="grupo06" src={imgGrupo06} />,
-            label:<Typography paragraph>Todas as nulíparas com feto único em apresentação pélvica.</Typography>    
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Todas as nulíparas com feto único em apresentação pélvica.</Typography>    
         },
         7:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo07" src={imgGrupo07} />,
-            label:<Typography paragraph>Todas as multíparas com feto único em apresentação pélvica, incluindo aquelas com cesárea(s) anterior(es).</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Todas as multíparas com feto único em apresentação pélvica, incluindo aquelas com cesárea(s) anterior(es).</Typography>
         },
         8:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo08" src={imgGrupo08} />,
-            label:<Typography paragraph>Todas mulheres com gestação múltipla, incluindo aquelas com cesárea(s) anterior(es).</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Todas mulheres com gestação múltipla, incluindo aquelas com cesárea(s) anterior(es).</Typography>
         },
         9:{imagem:<img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo09" src={imgGrupo09} />,
-            label:<Typography paragraph>Todas gestantes com feto em situação transversa ou oblíqua, incluindo aquelas com cesárea(s).</Typography>
+            label:<Typography paragraph align="center" style={{ marginTop: "25px" }}>Todas gestantes com feto em situação transversa ou oblíqua, incluindo aquelas com cesárea(s).</Typography>
         },
         10:{imagem: <img style={{
             display: "block",
             marginLeft: "auto",
             marginRight: "auto"
         }} alt="grupo10" src={imgGrupo10} />,
-            label:<Typography paragraph>Todas gestantes com feto e cefálico, menor que 37 semanas, incluindo aquelas com cesárea(s) anterior(es).</Typography>
+            label:<Typography paragraph  align="center" style={{ marginTop: "25px" }}>Todas gestantes com feto e cefálico, menor que 37 semanas, incluindo aquelas com cesárea(s) anterior(es).</Typography>
     }
     }
 
@@ -105,9 +106,9 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
             <Typography variant="h4" component="h2">Classificação</Typography>
             <Typography variant="h5" component="p" align="center">Grupo: {grupo}</Typography>
             {imagemGrupos[grupo].imagem}
-            <Typography align="center" style={{ marginTop: "25px" }}>
-                {imagemGrupos[grupo].label}
-            </Typography>
+        
+            {imagemGrupos[grupo].label}
+   
 
             <Grid
                 container
@@ -117,6 +118,13 @@ function Classificacao({aoEnviar, aoVoltar, dadosColetados, grupo }) {
                 <Grid item >
                     <Box display="flex" justifyContent="flex-end">
                         <Link to='/' style={{textDecoration:'none', color:'white'}}><Button variant="contained" color="primary" startIcon={<HomeIcon />} >Início</Button></Link>
+                    </Box>
+                </Grid>
+                <Grid item >
+                    <Box display="flex" justifyContent="flex-end">
+                        <Button type="submit" variant="contained" color="primary" startIcon={<SaveIcon />} onClick={event => {
+                event.preventDefault();
+                aoEnviar({ grupo });}} >Salvar</Button>
                     </Box>
                 </Grid>
             </Grid>
