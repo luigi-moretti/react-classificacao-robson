@@ -18,7 +18,7 @@ function testaCPF(strCPF) {
     var Soma;
     var Resto;
     Soma = 0;
-  if (strCPF === "00000000000") return { valido: false, texto: "CPF inválido." };
+  if (strCPF === "00000000000") return { valido: false, texto: "CPF inválido." }
 
   for (var i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
   Resto = (Soma * 10) % 11;
@@ -35,4 +35,14 @@ function testaCPF(strCPF) {
     return { valido: true, texto: "" };
 }
 
-export {validarSenha, testaCPF};
+function validaEmail(email){
+    var re = /\S+@\S+\.\S+/;
+
+    if(email === '' || !re.test(email)){
+        return { valido: false, texto: "E-mail inválido." }
+    } else{
+        return { valido: true, texto: "" };
+    }
+}
+
+export {validarSenha, testaCPF, validaEmail};
