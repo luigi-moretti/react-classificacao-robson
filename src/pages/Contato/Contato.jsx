@@ -2,33 +2,78 @@ import { Box, TextField, Typography, Grid, Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Dialogo from '../../components/Dialogo';
+import {validaEmail, validarSenha} from '../../models/formulario';
+
 
 function Contato() {
+  const validacoes = {
+    email: validaEmail,
+    nome: validarSenha,
+  }
   const [name, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMenssagem] = useState('');
+  const [erros, setErros] = useState({
+    email:{valido:true, texto:""},
+    nome:{valido:true, texto:""},
+  });
+  const [open, setOpen] = useState(false);
+  const [tituloModal, setTituloModal] = useState('');
+  const [corpoModal, setCorpoModal] = useState('');
+  const [statusModal, setStatusModal] = useState();
+
+  
+  function handleOpenClose(){
+    setOpen(!open);
+  }
+
+  function validarCampos(event){
+    const {name,value} = event.target;
+    const novoEstado = {...erros};
+    novoEstado[name] = validacoes[name](value);
+    setErros(novoEstado);
+}
+
+function possoEnviar(){
+    for(let campo in erros){
+        if(!erros[campo].valido){
+            return false
+        }
+    }
+    return true;
+}
 
   function handleSubmit(e) {
-    e.preventDefault();
-    //const body = JSON.stringify({name, email, message});
-    const body = {name, email, message};
-
-    console.log(body);
     
-    axios({
-      method: "POST",
-      url:"http://localhost:3002/send",
-      data:  body
-    }).then((response)=>{
-      if (response.data.status === 'success') {
-        alert("Message Sent.");
-        this.resetForm()
-        limpaForm()
-      } else if (response.data.status === 'fail') {
-        alert("Message failed to send.")
+    axios.post('https://email-res.herokuapp.com/send',{
+      name:name,
+      email:email,
+      message:message
+    }).then(response => {
+      if(response.status === 200){
+        setTituloModal('Sucesso no envio');
+        setCorpoModal('Mensagem enviada com sucesso!');
+        setStatusModal(true);
+        handleOpenClose();
+        limpaForm(); 
+        console.log(response)
+      } else{
+        setTituloModal('Falha no envio');
+        setCorpoModal('Mensagem não enviada!');
+        setStatusModal(false);
+        handleOpenClose();
+        limpaForm();
       }
     })
-   
+      .catch(error =>{
+        setTituloModal('Falha no envio');
+        setCorpoModal('Mensagem não enviada!');
+        setStatusModal(false);
+        handleOpenClose();
+        limpaForm();
+        console.log(error)})
+    
   }
 
   function limpaForm(){
@@ -40,9 +85,21 @@ function Contato() {
 
   return (
     <Box>
+      <Dialogo 
+        onClose={handleOpenClose}
+        titulo={tituloModal}
+        corpo= {corpoModal}
+        open={open}
+        status={statusModal}
+      />
       <form
         onSubmit={ (e)=>{
-          handleSubmit(e);
+          e.preventDefault();
+          if(possoEnviar()){
+            handleSubmit(e);
+          }else{
+            console.log('não é possivel enviar')
+          }
         }
         }
       >
@@ -62,11 +119,20 @@ function Contato() {
               <Typography variant="h4" component="h2">Contato</Typography>
             </Grid>
             <Grid item xs={12}>
+              <Typography>Vamos conversar! Conte-nos sobre sua experiência e sugestões de melhorias.</Typography>
+              <Typography>Estamos ansiosos para te ouvir.</Typography>
+            </Grid>
+            <Grid item xs={12}>
               <TextField 
                 label="Nome"
                 variant="outlined" fullWidth
                 value={name}
+                onBlur={validarCampos}
+                name="nome"
+                error={!erros.nome.valido}
+                helperText={erros.nome.texto}
                 onChange={(event) => setNome(event.target.value)}
+                required
               />
             </Grid>
             <Grid item xs={12}>
@@ -74,7 +140,12 @@ function Contato() {
                 label="E-mail"
                 variant="outlined" fullWidth
                 value={email}
+                onBlur={validarCampos}
+                name="email"
+                error={!erros.email.valido}
+                helperText={erros.email.texto}
                 onChange={(event) => setEmail(event.target.value)}
+                required
               />
             </Grid>
             <Grid item xs={12}>

@@ -1,5 +1,7 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 import HomeIcon from '@material-ui/icons/Home';
+import EmailIcon from '@material-ui/icons/Email';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 
@@ -7,7 +9,8 @@ class Menu extends Component{
     constructor(){
         super();
         this.links = [
-            {route: '/', label:<HomeIcon/>}
+            {route: '/', label: <Tooltip title="Início" arrow><HomeIcon/></Tooltip>},
+            {route: '/contato', label:<Tooltip title="Contato" arrow><EmailIcon/></Tooltip>}
         ]
     }
     
