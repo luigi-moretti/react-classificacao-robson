@@ -1,9 +1,10 @@
 import { Box, TextField, Typography, Grid, Button } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import SendIcon from '@material-ui/icons/Send';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Dialogo from '../../components/Dialogo';
-import {validaEmail, validarSenha} from '../../models/formulario';
+import { validaEmail, validarSenha } from '../../models/formulario';
 
 
 function Contato() {
@@ -15,50 +16,52 @@ function Contato() {
   const [email, setEmail] = useState('');
   const [message, setMenssagem] = useState('');
   const [erros, setErros] = useState({
-    email:{valido:true, texto:""},
-    nome:{valido:true, texto:""},
+    email: { valido: true, texto: "" },
+    nome: { valido: true, texto: "" },
   });
   const [open, setOpen] = useState(false);
   const [tituloModal, setTituloModal] = useState('');
   const [corpoModal, setCorpoModal] = useState('');
   const [statusModal, setStatusModal] = useState();
+  const [aguardaModal, setAguardaModal] = useState(false);
 
-  
-  function handleOpenClose(){
+
+  function handleOpenClose() {
     setOpen(!open);
   }
 
-  function validarCampos(event){
-    const {name,value} = event.target;
-    const novoEstado = {...erros};
+  function validarCampos(event) {
+    const { name, value } = event.target;
+    const novoEstado = { ...erros };
     novoEstado[name] = validacoes[name](value);
     setErros(novoEstado);
-}
+  }
 
-function possoEnviar(){
-    for(let campo in erros){
-        if(!erros[campo].valido){
-            return false
-        }
+  function possoEnviar() {
+    for (let campo in erros) {
+      if (!erros[campo].valido) {
+        return false
+      }
     }
     return true;
-}
+  }
 
   function handleSubmit(e) {
-    
-    axios.post('https://email-res.herokuapp.com/send',{
-      name:name,
-      email:email,
-      message:message
+
+
+    axios.post('https://email-res.herokuapp.com/send', {
+      name: name,
+      email: email,
+      message: message
     }).then(response => {
-      if(response.status === 200){
+      if (response.status === 200) {
         setTituloModal('Sucesso no envio');
         setCorpoModal('Mensagem enviada com sucesso!');
         setStatusModal(true);
         handleOpenClose();
-        limpaForm(); 
+        limpaForm();
         console.log(response)
-      } else{
+      } else {
         setTituloModal('Falha no envio');
         setCorpoModal('Mensagem não enviada!');
         setStatusModal(false);
@@ -66,47 +69,54 @@ function possoEnviar(){
         limpaForm();
       }
     })
-      .catch(error =>{
+      .catch(error => {
         setTituloModal('Falha no envio');
         setCorpoModal('Mensagem não enviada!');
         setStatusModal(false);
         handleOpenClose();
         limpaForm();
-        console.log(error)})
-    
+        console.log(error)
+      })
+
   }
 
-  function limpaForm(){
+  function limpaForm() {
     setNome('');
     setEmail('');
     setMenssagem('');
+    setAguardaModal(false);
   }
 
 
   return (
     <Box>
-      <Dialogo 
+      <Dialogo
         onClose={handleOpenClose}
         titulo={tituloModal}
-        corpo= {corpoModal}
+        corpo={corpoModal}
         open={open}
         status={statusModal}
       />
       <form
-        onSubmit={ (e)=>{
+        onSubmit={(e) => {
           e.preventDefault();
-          if(possoEnviar()){
+          setAguardaModal(true);
+          if (possoEnviar()) {
             handleSubmit(e);
-          }else{
-            console.log('não é possivel enviar')
+          } else {
+            setTituloModal('Falha no envio');
+            setCorpoModal('Mensagem não enviada!');
+            setStatusModal(false);
+            handleOpenClose();
+            limpaForm();
           }
         }
         }
       >
         <Grid
-           container
-           direction="column"
-           justify="space-between"
+          container
+          direction="column"
+          justify="space-between"
         >
           <Grid item
             container
@@ -123,7 +133,7 @@ function possoEnviar(){
               <Typography>Estamos ansiosos para te ouvir.</Typography>
             </Grid>
             <Grid item xs={12}>
-              <TextField 
+              <TextField
                 label="Nome"
                 variant="outlined" fullWidth
                 value={name}
@@ -136,7 +146,7 @@ function possoEnviar(){
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField 
+              <TextField
                 label="E-mail"
                 variant="outlined" fullWidth
                 value={email}
@@ -149,7 +159,7 @@ function possoEnviar(){
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField 
+              <TextField
                 label="Mensagem"
                 variant="outlined" fullWidth
                 multiline
@@ -162,7 +172,7 @@ function possoEnviar(){
           </Grid>
 
           <Grid item container justify="flex-end" alignItems="center">
-            <Button type="submit" endIcon={<SendIcon/>} variant="contained" color="primary" >Enviar</Button>
+            <Button type="submit" endIcon={aguardaModal ? <CircularProgress size={25} /> : <SendIcon />} variant="contained" color="primary" disabled={aguardaModal}>{aguardaModal ? 'Enviando' : 'Enviar'}</Button>
           </Grid>
         </Grid>
       </form>
