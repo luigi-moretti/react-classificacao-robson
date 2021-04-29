@@ -11,9 +11,9 @@ let appShellFiles = [
   '/robots.txt',
   '/sw.js',
   '/static/css/*.css',
-  '/static/js/*js',
+  '/static/js/*.js',
   '/static/media/',
-  '/static/media/**.png',
+  '/static/media/*.png',
   '/static/media/favicon.cfc72c03.png',
   '/static/media/grupo01.f0fc2d2b.png',
   '/static/media/grupo02.0e705ceb.png',
@@ -25,7 +25,6 @@ let appShellFiles = [
   '/static/media/grupo08.44e0dd15.png',
   '/static/media/grupo09.bdc854dd.png',
   '/static/media/grupo10.0145de45.png',
-  'POST'
 ]
 
 //const imagens = [];
@@ -63,7 +62,11 @@ self.addEventListener('fetch', (event) => {
     const response = await fetch(event.request);
     const cache = await caches.open(cacheName);
     console.log(`[Service Worker] Caching new resource: ${event.request.url}`);
-    cache.put(event.request, response.clone());
-    return response;
+    //cache.put(event.request, response.clone());
+    //return response;
+
+    return cache.put(event.request, response.clone()).then(() => {
+      return response;
+    });
   })());
 });
