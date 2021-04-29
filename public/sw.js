@@ -14,17 +14,6 @@ let appShellFiles = [
   '/static/js/*.js',
   '/static/media/',
   '/static/media/*.png',
-  '/static/media/favicon.cfc72c03.png',
-  '/static/media/grupo01.f0fc2d2b.png',
-  '/static/media/grupo02.0e705ceb.png',
-  '/static/media/grupo03.49f1282b.png',
-  '/static/media/grupo04.2536a486.png',
-  '/static/media/grupo05.57bd20c5.png',
-  '/static/media/grupo06.09654ba4.png',
-  '/static/media/grupo07.4790ca3b.png',
-  '/static/media/grupo08.44e0dd15.png',
-  '/static/media/grupo09.bdc854dd.png',
-  '/static/media/grupo10.0145de45.png',
 ]
 
 //const imagens = [];
