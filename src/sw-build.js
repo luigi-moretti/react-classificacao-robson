@@ -7,12 +7,13 @@ const buildSW = () => {
       swSrc: 'src/sw-template.js', // this is your sw template file
       swDest: 'build/service-worker.js', // this will be created in the build step
       globDirectory: 'build',
-      globPatterns: ['**/*.{png}'], // precaching jpg files
+      globPatterns: ['**/*.{html,json,js,css,png}'], // precaching jpg files
       globIgnores: [
         "**/node_modules/**/*",
         "../src/sw-template.js",
         "service-worker.js"
-      ]
+      ],
+      maximumFileSizeToCacheInBytes:3145728
     })
     .then(({ count, size, warnings }) => {
       // Optionally, log any warnings and details.
