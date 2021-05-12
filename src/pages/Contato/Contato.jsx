@@ -126,7 +126,7 @@ function Contato() {
             spacing={2}
           >
             <Grid item xs={12}>
-              <Typography variant="h4" component="h2">Contato</Typography>
+            <Typography variant="h3" component="h1" style={{ marginTop: "25px" }}>Contato</Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography>Vamos conversar! Conte-nos sobre sua experiência e sugestões de melhorias.</Typography>
